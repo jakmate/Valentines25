@@ -89,10 +89,7 @@
     <canvas id="confetti-canvas"></canvas>
     <div class="container">
         <div class="gif-container" id="gifContainer">
-            <!-- Initial confused cat GIF -->
-            <div class="tenor-gif-embed" data-postid="14240877" 
-                 data-share-method="host" data-aspect-ratio="1.13699" 
-                 data-width="100%"></div>
+            <img src="confused-cat.gif" alt="Confused Cat">
         </div>
         <h1 id="question">Will you be my Valentine?</h1>
         <div class="buttons">
@@ -115,12 +112,11 @@
         const confettiCount = 150;
         const confettiSpeed = 3;
 
-        // Predefined Tenor GIFs
         const gifs = {
-            initial: '14240877',
-            sad: '10704312894451489263',
-            desperate: '24509947',
-            happy: '2620725832675913652'
+            initial: 'confused-cat.gif', // Confused cat
+            sad: 'sad-cat.gif',         // Sad cat
+            desperate: 'desperate-cat.gif', // Desperate cat
+            happy: 'happy-cat.gif'      // Happy cat
         };
 
         function createConfetti() {
@@ -173,19 +169,9 @@
 
         function handleYes() {
             questionElement.innerHTML = "YAY! 😍 💖";
-            gifContainer.innerHTML = `
-                <div class="tenor-gif-embed" 
-                        data-postid="${gifs.happy}" 
-                        data-share-method="host" 
-                        data-aspect-ratio="1.13699" 
-                        data-width="100%"></div>
-            `;
             yesButton.style.display = "none";
             noButton.style.display = "none";
-            const script = document.createElement('script');
-            script.src = 'https://tenor.com/embed.js';
-            script.async = true;
-            document.body.appendChild(script);
+            gifContainer.innerHTML = `<img src="${gifs.happy}" alt="Happy Cat">`;
             createConfetti();
         }
 
@@ -199,18 +185,8 @@
                 yesButton.style.top = "0";
                 yesButton.style.left = "0";
                 yesButton.style.borderRadius = "0";
-                gifContainer.innerHTML = `
-                    <div class="tenor-gif-embed" 
-                         data-postid="${gifs.desperate}" 
-                         data-share-method="host" 
-                         data-aspect-ratio="1.13699" 
-                         data-width="100%"></div>
-                `;
                 noButton.style.display = "none";
-                const script = document.createElement('script');
-                script.src = 'https://tenor.com/embed.js';
-                script.async = true;
-                document.body.appendChild(script);
+                gifContainer.innerHTML = `<img src="${gifs.desperate}" alt="Desperate Cat">`;
                 return;
             }
 
@@ -222,19 +198,8 @@
                 "LAST CHANCE! PLEASE SAY YES! 😭"
             ];
             
-            gifContainer.innerHTML = `
-                <div class="tenor-gif-embed" 
-                     data-postid="${noCount === 1 ? gifs.sad : gifs.desperate}" 
-                     data-share-method="host" 
-                     data-aspect-ratio="1.13699" 
-                     data-width="100%"></div>
-            `;
-            
+            gifContainer.innerHTML = `<img src="${noCount === 1 ? gifs.sad : gifs.desperate}" alt="Sad Cat">`;
             questionElement.innerHTML = messages[Math.min(noCount - 1, messages.length - 1)];
-            const script = document.createElement('script');
-            script.src = 'https://tenor.com/embed.js';
-            script.async = true;
-            document.body.appendChild(script);
         }
     </script>
 </body>
